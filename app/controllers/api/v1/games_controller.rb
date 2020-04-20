@@ -20,6 +20,8 @@ module Api
       def update
       end
 
+      private
+
       def set_game
         @game = Game.find(params[:id])
       rescue ActiveRecord::RecordNotFound
