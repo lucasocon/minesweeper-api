@@ -18,6 +18,15 @@ module Api
       end
 
       def update
+        if @game.lost?
+          render json: { message: 'Sorry, the game is over, please try again.',
+                         game: @game },
+                 status: :ok
+        else
+          result = GameService.new(@game).play_turn(game_params[:x], game_params[:y])
+
+          render json: { message: result, game: @game }, status: :ok
+        end
       end
 
       private
@@ -27,6 +36,10 @@ module Api
       rescue ActiveRecord::RecordNotFound
         render json: { error: true, message: 'Game Not Found' },
                status: :not_found
+      end
+
+      def game_params
+        params.require(:game).permit(:x, :y)
       end
     end
   end
