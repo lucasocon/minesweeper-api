@@ -1,24 +1,24 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+#### API URL: https://minesweeper-api-ocon.herokuapp.com
 
-Things you may want to cover:
+## Setup
+#### Ruby version
 
-* Ruby version
+      ruby '2.5.7'
 
-* System dependencies
+#### Configuration
 
-* Configuration
+	    bundle install
 
-* Database creation
+#### Database creation
 
-* Database initialization
+	    rake db:create
 
-* How to run the test suite
+#### Database initialization
 
-* Services (job queues, cache servers, search engines, etc.)
+	    rake db:migrate
 
-* Deployment instructions
+#### How to run server
 
-* ...
+	    rails s
