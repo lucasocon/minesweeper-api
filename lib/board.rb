@@ -4,10 +4,10 @@
 class Board
   SIZE = 10
   TOTAL_CELLS = SIZE * SIZE
-  MINE = 'x'
-  FLAG = 'f'
-  HIDDEN = 'h'
-  EMPTY = 'e'
+  MINE = :x
+  FLAG = :f
+  HIDDEN = :h
+  EMPTY = :e
 
   attr_accessor :visible, :with_mines
 
@@ -21,13 +21,5 @@ class Board
       random_number = Random.new.rand(0...9)
       array.map.with_index { |_value, key| random_number == key ? MINE : HIDDEN }
     end
-  end
-
-  def available_cells
-    visible.flatten.count(HIDDEN)
-  end
-
-  def number_of_mines
-    with_mines.flatten.count(MINE)
   end
 end

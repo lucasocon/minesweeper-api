@@ -39,7 +39,7 @@ class GameService < ApplicationService
   end
 
   def win?
-    @board.available_cells == @board.number_of_mines
+    @board.visible.flatten.count(Board::HIDDEN) == @board.with_mines.flatten.count(Board::MINE)
   end
 
   def reveal_attempt(cell, board)
