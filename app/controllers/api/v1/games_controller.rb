@@ -18,15 +18,9 @@ module Api
       end
 
       def update
-        if @game.lost?
-          render json: { message: 'Sorry, the game is over, please try again.',
-                         game: @game },
-                 status: :ok
-        else
-          result = GameService.new(@game).play_turn(game_params[:x], game_params[:y])
+        result = GameService.call(@game, game_params[:x], game_params[:y])
 
-          render json: { message: result, game: @game }, status: :ok
-        end
+        render json: { message: result.message, game: result.game }, status: :ok
       end
 
       private

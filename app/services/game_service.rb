@@ -1,29 +1,38 @@
 # frozen_string_literal: true
 
 # GameService service
-class GameService
+class GameService < ApplicationService
   attr_reader :attempt
 
-  def initialize(game)
+  def initialize(game, coord_x, coord_y)
     @game = game
     @board = Board.new(visible: game.board, with_mines: game.mines_board)
-    @attempt = nil
+    @attempt = Pair.new(coord_x: coord_x - 1, coord_y: coord_y - 1)
     @empty_cells = []
   end
 
-  def play_turn(coord_x, coord_y)
-    # @attempt = Pair.new(coord_x: coord_x - 1, coord_y: Board::SIZE - coord_y)
-    @attempt = Pair.new(coord_x: coord_x - 1, coord_y: coord_y - 1)
+  def call
+    if @game.lost?
+      message = 'Sorry, the game is over, please try again.'
+    else
+      reveal_attempt(@attempt, @board.visible)
+      @game.update(board: @board.visible)
+      @game.update(lost: true) if a_mine?(@attempt)
+      @game.update(won: true) if win?
 
-    reveal_attempt(@attempt, @board.visible)
-    @game.update(board: @board.visible)
-    @game.update(lost: true) if a_mine?(@attempt) || win?
+      message = if a_mine?(@attempt)
+                  'Game Over'
+                elsif win?
+                  'You Win'
+                else
+                  'Next Movement'
+                end
+    end
 
-    return 'Game Over' if a_mine?(@attempt)
-    return 'You Win' if win?
-
-    'Next Movement'
+    OpenStruct.new(message: message, game: @game)
   end
+
+  private
 
   def a_mine?(cell)
     @board.with_mines[cell.y][cell.x] == Board::MINE
@@ -47,8 +56,6 @@ class GameService
       board[cell.y][cell.x] = number
     end
   end
-
-  private
 
   def surrounding_cells(coordinates)
     surrounding_cells = []
