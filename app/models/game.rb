@@ -2,7 +2,9 @@
 
 # Game model
 class Game < ApplicationRecord
-  after_create :create_boards
+  validates_presence_of :board, :mines_board
+
+  after_initialize :create_boards
 
   private
 
@@ -10,7 +12,5 @@ class Game < ApplicationRecord
     board = Board.new
     self.board = board.visible
     self.mines_board = board.with_mines
-
-    save
   end
 end

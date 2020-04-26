@@ -7,7 +7,7 @@ class GameService < ApplicationService
   def initialize(game, coord_x, coord_y)
     @game = game
     @board = Board.new(visible: game.board, with_mines: game.mines_board)
-    @attempt = Pair.new(coord_x: coord_x - 1, coord_y: coord_y - 1)
+    @attempt = Pair.new(coord_x: coord_x.to_i - 1, coord_y: coord_y.to_i - 1)
     @empty_cells = []
   end
 
