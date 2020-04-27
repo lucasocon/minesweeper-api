@@ -4,10 +4,10 @@
 class Board
   SIZE = 10
   TOTAL_CELLS = SIZE * SIZE
-  MINE = :x
-  FLAG = :f
-  HIDDEN = :h
-  EMPTY = :e
+  MINE = 'x'
+  FLAG = 'f'
+  HIDDEN = 'h'
+  EMPTY = 'e'
 
   attr_accessor :visible, :with_mines
 

@@ -1,32 +1,35 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :game do
-    board {
+    board do
       [
-        ["h", "h", "h", "h", "h", "h", "h", "h", "h", "h"],
-        ["h", "h", "h", "h", "h", "h", "h", "h", "h", "h"],
-        ["h", "h", "h", "h", "h", "h", "h", "h", "h", "h"],
-        ["h", "h", "h", "h", "h", "h", "h", "h", "h", "h"],
-        ["h", "h", "h", "h", "h", "h", "h", "h", "h", "h"],
-        ["h", "h", "h", "h", "h", "h", "h", "h", "h", "h"],
-        ["h", "h", "h", "h", "h", "h", "h", "h", "h", "h"],
-        ["h", "h", "h", "h", "h", "h", "h", "h", "h", "h"],
-        ["h", "h", "h", "h", "h", "h", "h", "h", "h", "h"],
-        ["h", "h", "h", "h", "h", "h", "h", "h", "h", "h"]
+        %w[h h h h h h h h h h],
+        %w[h h h h h h h h h h],
+        %w[h h h h h h h h h h],
+        %w[h h h h h h h h h h],
+        %w[h h h h h h h h h h],
+        %w[h h h h h h h h h h],
+        %w[h h h h h h h h h h],
+        %w[h h h h h h h h h h],
+        %w[h h h h h h h h h h],
+        %w[h h h h h h h h h h]
       ]
-    }
-    mines_board {
+    end
+    mines_board do
       [
-        ["h", "h", "h", "h", "x", "h", "h", "h", "h", "h"],
-        ["h", "h", "h", "h", "h", "h", "h", "h", "x", "h"],
-        ["h", "h", "h", "h", "x", "h", "h", "h", "h", "h"],
-        ["h", "h", "h", "h", "x", "h", "h", "h", "h", "h"],
-        ["h", "h", "h", "h", "x", "h", "h", "h", "h", "h"],
-        ["h", "h", "h", "h", "h", "h", "h", "h", "x", "h"],
-        ["h", "x", "h", "h", "h", "h", "h", "h", "h", "h"],
-        ["h", "h", "h", "x", "h", "h", "h", "h", "h", "h"],
-        ["h", "h", "h", "h", "x", "h", "h", "h", "h", "h"],
-        ["h", "x", "h", "h", "h", "h", "h", "h", "h", "h"]]
-    }
+        %w[h h h h x h h h h h],
+        %w[h x h h h h h h x h],
+        %w[h h h h x h h h h h],
+        %w[h h h h x h h h h h],
+        %w[h h h h x h h h h h],
+        %w[h h h h h h h h x h],
+        %w[h x h h h h h h h h],
+        %w[h h h x h h h h h h],
+        %w[h h h h x h h h h h],
+        %w[h x h h h h h h h h]
+      ]
+    end
     lost { false }
     won { false }
   end
